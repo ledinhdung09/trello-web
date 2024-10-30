@@ -33,7 +33,8 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
-
+      "react/prop-types": 0,
+      "no-extra-boolean-cast": 0,
       "no-restricted-imports": [
         "error",
         {
