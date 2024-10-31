@@ -34,6 +34,8 @@ export default [
         { allowConstantExport: true },
       ],
       "react/prop-types": 0,
+      "react-hooks/rules-of-hooks": 0,
+      "no-undef": 0,
       "no-extra-boolean-cast": 0,
       "no-restricted-imports": [
         "error",

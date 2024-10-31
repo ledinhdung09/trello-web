@@ -2,13 +2,14 @@ import AttachmentIcon from "@mui/icons-material/Attachment";
 import CommentIcon from "@mui/icons-material/Comment";
 import GroupIcon from "@mui/icons-material/Group";
 import { Card as MuiCard } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import EditIcon from "@mui/icons-material/Edit";
 
 function Card({ card }) {
   const shouldShowCardActions = () => {
@@ -54,8 +55,35 @@ function Card({ card }) {
     >
       {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
 
-      <CardContent sx={{ p: 1.5, "&:last-child": { p: 1.5 } }}>
-        <Typography>{card?.title}</Typography>
+      <CardContent sx={{ p: 0, "&:last-child": { p: 0 } }}>
+        <Button
+          sx={{
+            p: "4px 8px",
+            border: "none",
+            width: "100%",
+            justifyContent: "space-between",
+            color: "text.primary",
+            "&:hover": {
+              border: "none",
+              ".endIcon": {
+                opacity: 1, // Hiển thị icon khi hover
+              },
+            },
+            "& .endIcon": {
+              opacity: 0, // Ẩn icon ban đầu
+              transition: "opacity 0.3s", // Hiệu ứng mượt khi hiện icon
+            },
+          }}
+          disableRipple
+          variant="outlined"
+          endIcon={
+            <IconButton aria-label="delete" sx={{ p: "5px" }}>
+              <EditIcon className="endIcon" />
+            </IconButton>
+          }
+        >
+          {card?.title}
+        </Button>
       </CardContent>
       {shouldShowCardActions() && (
         <CardActions sx={{ p: "0 4px 8px 4px" }}>

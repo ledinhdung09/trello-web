@@ -1,4 +1,4 @@
-import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -54,6 +54,8 @@ function Column({ column }) {
     setAnchorEl(null);
   };
 
+  const [textTitle, setTextTitle] = useState(column?.title);
+
   //Sap xep card
   const orderedCards = mapOrder(column?.cards, column.cardOrderIds, "_id");
 
@@ -78,22 +80,30 @@ function Column({ column }) {
         <Box
           sx={{
             height: (theme) => theme.trello.columnHeaderHeight,
-            p: 2,
+
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: "bold",
-              fontSize: "1rem",
-              cursor: "pointer",
+          <TextField
+            id="outlined-multiline-flexible"
+            multiline
+            maxRows={4}
+            value={textTitle}
+            onChange={(e) => {
+              setTextTitle(e.target.value);
             }}
-          >
-            {column?.title}
-          </Typography>
+            sx={{
+              width: "100%",
+              height: "fit-content",
+              p: " 0 5px",
+              m: " 0 5px",
+              "& fieldset": { border: "none" },
+              "&:focus-within fieldset": { border: "1px solid #1976d2" },
+              "& .MuiOutlinedInput-root": { p: 1 },
+            }}
+          />
           <Box>
             <Tooltip title="More Options">
               <ExpandMoreIcon
