@@ -1,10 +1,12 @@
-import Board from "~/pages/Boards/_id";
+import { RouterProvider } from "react-router-dom";
+import router from "./routers/router";
+import { AuthProvider } from "./pages/Auth/AuthContext";
 
 function App() {
   return (
-    <>
-      <Board />
-    </>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }
 
